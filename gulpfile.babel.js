@@ -7,6 +7,7 @@ import bro from "gulp-bro";
 import babelify from "babelify";
 import image from "gulp-image";
 import ws from "gulp-webserver";
+import ghPages from "gulp-gh-pages";
 
 const sass = require("gulp-sass")(require("sass"));
 
@@ -64,7 +65,7 @@ const js = () =>
 const img = () =>
     gulp.src(routes.img.src).pipe(image()).pipe(gulp.dest(routes.img.dest));
 
-const clean = () => del(["dist/styles.css"]);
+const clean = () => del(["dist/styles.css", ".publish"]);
 
 const watch = () => {
     gulp.watch(routes.pug.watch, pug);
@@ -76,6 +77,8 @@ const watch = () => {
 const webserver = () =>
     gulp.src("dist").pipe(ws({ livereload: true, open: true }));
 
+const gh = () => gulp.src("dist/**/*").pipe(ghPages());
+
 const prepare = gulp.series([clean]);
 
 const assets = gulp.series([pug, styles, js, img]);
@@ -84,3 +87,4 @@ const live = gulp.parallel([webserver, watch]);
 
 export const build = gulp.series([prepare, assets]);
 export const dev = gulp.series([build, live]);
+export const deploy = gulp.series([build, gh, clean]);
