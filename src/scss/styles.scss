@@ -4,6 +4,8 @@
 
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap");
 
+@import "./components/partials.scss";
+
 * {
     box-sizing: border-box;
 }
@@ -16,41 +18,35 @@ html {
 }
 
 body {
-    @include scale(width, $pc-screen-width);
-    margin: 0px auto;
     height: 200vh;
     font-family: "IBM Plex Sans Condensed" sans-serif;
+    position: relative;
 }
 
 header {
-    width: inherit;
-    @include scale(height, 60px);
+    width: 100%;
+    @include scale(height, $partials-height);
     position: fixed;
     display: flex;
     align-items: center;
     @include scale(gap, 1px);
-    & * {
-        background-color: #ffffff;
+    @include scale(padding, $web-page-padding);
+    & > * {
+        height: inherit;
+        background-color: $color-white;
     }
+
     .header-main__logo-area {
         @include scale(width, 195px);
-        height: inherit;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        @include scale(padding, 0px 20px);
-        .header-main__logo-icon {
-            @include scale(width, 65px);
-            @include scale(height, 20px);
-            background-image: url("https://thefwa.com/assets/fwa-logo.png");
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
         .header-main__menu-button {
             @include scale(width, 35px);
             border: none;
             margin: 0px;
             padding: 0px;
+            @include scale(margin-right, 20px);
             span {
                 width: inherit;
                 @include scale(height, 2px);
@@ -62,7 +58,6 @@ header {
     }
 
     .header-main__search-area {
-        height: inherit;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -92,21 +87,21 @@ header {
 
     .header-main__promo-area {
         @include scale(width, 390px);
-        @include scale(height, 120px);
+        @include scale(height, $partials-height * 2);
         background-color: #2e2e2e;
         position: relative;
         align-self: flex-end;
 
         .header-main__filter-area {
-            @include scale(height, 60px);
+            @include scale(height, $partials-height);
             display: flex;
             justify-content: space-between;
             align-items: center;
             @include scale(gap, 5px);
             @include scale(padding, 0px 16px);
             position: sticky;
-            @include scale(top, -60px);
-            background-color: #ffffff;
+            @include scale(top, -$partials-height);
+            background-color: $color-white;
 
             .header-main__filter-multiselect,
             .header-main__filter-date-select {
@@ -145,6 +140,67 @@ header {
                     @include scale(margin-left, 10px);
                 }
             }
+        }
+    }
+}
+
+main {
+    @include scale(padding, $web-page-padding);
+    @include scale(padding-top, 135px);
+    @include scale(margin-bottom, 190px);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    @include scale(gap, 1px);
+    @include scale(height, $partials-height);
+    @include scale(padding, $web-page-padding);
+    & > * {
+        height: inherit;
+        background-color: $color-white;
+    }
+    .footer-main__logo-area {
+        @include scale(width, 195px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .footer-main__right-area {
+        display: flex;
+        justify-content: space-between;
+        @include scale(width, 972px);
+        @include scale(padding, 0px 18px);
+        @include scale(padding-top, 36px);
+        position: relative;
+
+        .footer-main__right-area-menu {
+            display: flex;
+            @include scale(gap, 12px);
+
+            a {
+                text-decoration: none;
+                color: #9a9a9a;
+                font-weight: 600;
+
+                @include scale(font-size, 12px);
+            }
+        }
+        .footer-main__right-area-notice {
+            color: #9a9a9a;
+            font-weight: 600;
+            @include scale(font-size, 12px);
+        }
+    }
+    .footer-main__sponsor-logo-area {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: flex-end;
+        @include scale(width, 195px);
+        @include scale(padding-right, 18px);
+        .footer-main__sponsor-logo {
+            @include scale(padding-bottom, 15px);
         }
     }
 }

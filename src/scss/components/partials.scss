@@ -1,0 +1,8 @@
+.main__logo-icon {
+    width: 65px;
+    height: 20px;
+    background-image: url("https://thefwa.com/assets/fwa-logo.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    @include scale(margin-left, 20px);
+}
