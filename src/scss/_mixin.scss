@@ -24,3 +24,10 @@
         #{$property}: $vws;
     }
 }
+
+@mixin fontSize($px) {
+    @if type-of($px) == "number" {
+        font-size: $px;
+        line-height: $px * 0.8;
+    }
+}

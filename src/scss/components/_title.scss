@@ -1,5 +1,5 @@
 %categoryText {
-    font-size: 14px;
+    @include fontSize(15px);
     color: #9a9a9a;
     text-transform: uppercase;
 }
